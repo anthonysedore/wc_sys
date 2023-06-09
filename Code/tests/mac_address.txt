@@ -1,0 +1,4 @@
+Master MAC:
+40:22:D8:3C:36:60
+Slave MAC in devboard:
+40:22:D8:3C:3D:48
