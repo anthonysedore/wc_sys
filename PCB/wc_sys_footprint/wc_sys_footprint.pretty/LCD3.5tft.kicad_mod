@@ -107,4 +107,9 @@
   (pad "12" thru_hole oval (at -48.895 10.795) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask") (tstamp 78ec3d2b-4007-4acf-aa49-fb838080f16c))
   (pad "13" thru_hole oval (at -48.895 13.335) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask") (tstamp 9e4dc2bf-fa79-49bf-bfcc-d15052407294))
   (pad "14" thru_hole oval (at -48.895 15.875) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask") (tstamp 6d5b115f-b598-4976-964e-ace396f113d1))
+  (model "${WC_SYS_3D}/3.5 TFI SPI 480X320 V1 v3.step"
+    (offset (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )
