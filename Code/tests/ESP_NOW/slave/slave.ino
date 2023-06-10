@@ -12,6 +12,8 @@
 #include <esp_now.h>
 #include <WiFi.h>
 
+#define LED_BUILTIN 2
+
 // REPLACE WITH YOUR RECEIVER MAC Address
 uint8_t broadcastAddress[] = {0x40, 0x22, 0xD8, 0x3C, 0x36, 0x60};
 
@@ -33,11 +35,18 @@ esp_now_peer_info_t peerInfo;
 void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
   Serial.print("\r\nLast Packet Send Status:\t");
   Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
+  if (status == 0) {
+    digitalWrite(LED_BUILTIN, HIGH);
+  }
+  else {
+    digitalWrite(LED_BUILTIN, LOW);
+  }
 }
  
 void setup() {
   // Init Serial Monitor
   Serial.begin(115200);
+  pinMode(LED_BUILTIN, OUTPUT);
  
   // Set device as a Wi-Fi Station
   WiFi.mode(WIFI_STA);
