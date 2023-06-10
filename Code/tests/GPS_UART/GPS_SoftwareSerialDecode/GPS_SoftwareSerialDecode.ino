@@ -1,26 +1,24 @@
 #include <SoftwareSerial.h>
-
 #include <TinyGPS.h>
-/* This sample code demonstrates the normal use of a TinyGPS object.
-   It requires the use of SoftwareSerial, and assumes that you have a
-   4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
-*/
 
 TinyGPS gps;
-SoftwareSerial ss(27, 26);
+#define MYPORT_TX 26
+#define MYPORT_RX 27
+EspSoftwareSerial::UART myPort;
 
-void setup()
-{
-  Serial.begin(115200);
-  ss.begin(9600);
-  
-  Serial.print("Simple TinyGPS library v. "); Serial.println(TinyGPS::library_version());
-  Serial.println("by Mikal Hart");
-  Serial.println();
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(115200); // Standard hardware serial port
+  myPort.begin(9600, SWSERIAL_8N1, MYPORT_RX, MYPORT_TX, false);
+  if (!myPort) { // If the object did not initialize, then its configuration is invalid
+    Serial.println("Invalid EspSoftwareSerial pin configuration, check config"); 
+    while (1) { // Don't continue with invalid configuration
+      delay (1000);
+    }
+  } 
 }
 
-void loop()
-{
+void loop() {
   bool newData = false;
   unsigned long chars;
   unsigned short sentences, failed;
@@ -28,17 +26,16 @@ void loop()
   // For one second we parse GPS data and report some key values
   for (unsigned long start = millis(); millis() - start < 1000;)
   {
-    while (ss.available())
+    while (myPort.available())
     {
-      char c = ss.read();
+      char c = myPort.read();
       // Serial.write(c); // uncomment this line if you want to see the GPS data flowing
       if (gps.encode(c)) // Did a new valid sentence come in?
         newData = true;
     }
   }
 
-  if (newData)
-  {
+  if (newData)  {
     float flat, flon;
     unsigned long age;
     gps.f_get_position(&flat, &flon, &age);
@@ -59,6 +56,8 @@ void loop()
   Serial.print(sentences);
   Serial.print(" CSUM ERR=");
   Serial.println(failed);
-  if (chars == 0)
+  if (chars == 0) {
     Serial.println("** No characters received from GPS: check wiring **");
+  }
 }
+
