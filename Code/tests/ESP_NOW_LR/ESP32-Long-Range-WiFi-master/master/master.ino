@@ -10,13 +10,13 @@
 
 const char* ssid = "kkkkk";//AP ssid
 const char* password = "12345678";//AP password
-const char* ssidRouter = "MySSID";//STA router ssid
-const char* passwordRouter = "MyPASSWORD";//STA router password
+const char* ssidRouter = "testtest";//STA router ssid
+const char* passwordRouter = "test1234";//STA router password
 WiFiUDP udp;
 
 void setup() {
-    pinMode(5, OUTPUT);//builtin Led, for debug
-    digitalWrite(5, HIGH);
+    pinMode(2, OUTPUT);//builtin Led, for debug
+    digitalWrite(2, HIGH);
     Serial.begin( 115200 );
     Serial.println( "Master" );
 
@@ -45,7 +45,7 @@ void setup() {
     Serial.println( WiFi.softAPIP() );
     Serial.println("#");//for debug
     delay( 1000 );
-    digitalWrite(5, LOW); 
+    digitalWrite(2, LOW); 
     udp.begin( 8888 );
 }
 
@@ -53,7 +53,7 @@ void loop()
 {
     udp.beginPacket( { 192, 168, 4, 255 }, 8888 );//send a broadcast message
     udp.write( 'b' );//the payload
-    digitalWrite(5, !digitalRead(5));
+    digitalWrite(2, !digitalRead(2));
     
     if ( !udp.endPacket() ){
         Serial.println("NOT SEND!");

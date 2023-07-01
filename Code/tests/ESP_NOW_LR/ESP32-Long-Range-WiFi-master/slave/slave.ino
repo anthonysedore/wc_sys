@@ -30,7 +30,7 @@ const char *toStr( wl_status_t status ) {
 void setup() {
     Serial.begin( 115200 );
     Serial.println( "Slave" );
-    pinMode(5, OUTPUT);//bultin Led, for debug
+    pinMode(2, OUTPUT);//bultin Led, for debug
 
     //We start STA mode with LR protocol
     //This ssid is not visible whith our regular devices
@@ -91,7 +91,7 @@ void loop() {
         return;
     char c = udp.read();
     if ( c == 'b' ){
-        digitalWrite(5, !digitalRead(5));//toggle Led
+        digitalWrite(2, !digitalRead(2));//toggle Led
         Serial.println("RECEIVED!");
         Serial.println(millis());
     }
