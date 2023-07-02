@@ -4,9 +4,7 @@ TinyGPS gps;
 EspSoftwareSerial::UART myPort;
 
 float latitude, longitude;
-unsigned long age;
-
-unsigned long gps_date, gps_time;
+unsigned long gps_date, gps_time, age;
 
 void setupGPS() {
   // put your setup code here, to run once:

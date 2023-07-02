@@ -1,13 +1,12 @@
-#include "GPS_task.h"
-#include "LCD_task.h"
-#include "DATA_task.h"
-#include "WIRELESS_task.h"
-
-//Task Handle, used to suspend start tasks using others
-static TaskHandle_t taskDATA = NULL; 
+#include "Definitions.h" //Contains Global Variables
+#include "GPS_task.h" //Contains GPS functions
+#include "LCD_task.h" //Responsible for LCD display
+#include "DATA_task.h" //Responsible keep track of data and logging to SD Card
+#include "WIRELESS_task.h" //Responsible for communicating to base station
 
 int toggleDATA = 0;
 int stopwatch = 0;
+static TaskHandle_t taskDATA = NULL; 
 
 void displayGPS(void *parameter) {
   while (1) {
@@ -20,7 +19,6 @@ void displayGPS(void *parameter) {
 }
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200); // Debug serial port
   setupGPS();
   setupLCD();
@@ -42,7 +40,7 @@ void setup() {
 }
 
 void loop() {
-  if (touchRead(13) < 40) {
+  if (touchRead(13) < 35) {
     callDATAloop();
     vTaskDelay(2000 / portTICK_PERIOD_MS); //Waits two seconds before looking for another button press
   }

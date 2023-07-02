@@ -2,10 +2,8 @@
 #define DATA_task_H_
 
 #include "Arduino.h"
+#include "Definitions.h"
 #include "GPS_task.h"
-
-// Variables
-extern int stopwatch;
 
 //  function prototypes
 void loopDATA(void *parameter);

@@ -2,6 +2,7 @@
 #define WIRELESS_task_H_
 
 #include "Arduino.h"
+#include "Definitions.h"
 
 
 // Variables
