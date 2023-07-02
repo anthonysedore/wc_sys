@@ -8,10 +8,13 @@
 
 //  variables
 extern float latitude, longitude;
+extern int stopwatch;
+extern int toggleDATA;
 
 //  function prototypes
 void setupLCD();
 void updateLCD(void *parameter);
 void header(const char *string);
+void loopTouch(void *parameter);
 
 #endif /* LCD_task_H_ */

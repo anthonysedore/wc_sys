@@ -11,9 +11,11 @@
 // Variables
 extern float latitude, longitude;
 extern unsigned long age;
+extern unsigned long gps_date, gps_time;
 
 //  function prototypes
 void setupGPS();
 void loopGPS(void *parameter);
+void updateTime();
 
 #endif /* GPS_task_H_ */

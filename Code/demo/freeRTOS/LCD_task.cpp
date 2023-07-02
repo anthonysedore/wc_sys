@@ -15,32 +15,43 @@ void header(const char *string)
 void setupLCD() {
   tft.init();
 
-  int h = tft.height();
-  int w = tft.width();
-
   tft.setRotation(1);
   tft.fillScreen(TFT_BLACK);
 }
 
 void updateLCD(void *parameter) {
   while (1) {
-    int xpos =  0;
-    int ypos = 40;
-
     tft.fillScreen(TFT_NAVY); // Clear screen to navy background
     
     //header("Print eSPI Test");
 
     tft.setCursor(0, 0, 4);
-    
+
+    //Display Coordinates
     tft.setTextColor(TFT_WHITE, TFT_BLACK); tft.setTextFont(4);
     tft.print("Latitude = ");
     tft.println(latitude, 6);
     tft.print("Longitude = ");
     tft.println(longitude, 6);
 
+    //Display Recording Time
+    tft.setCursor(0, 100, 4);
+    if (toggleDATA) {
+      tft.setTextColor(TFT_GREEN, TFT_BLACK); tft.setTextFont(4);
+    } else {
+      tft.setTextColor(TFT_RED, TFT_BLACK); tft.setTextFont(4);
+    }
+    
+    tft.println("Recording Time = ");
+    tft.println(stopwatch);
     
 
-    vTaskDelay(10000 / portTICK_PERIOD_MS); //End Screen
+    vTaskDelay(1000 / portTICK_PERIOD_MS); //End Screen
+  }
+}
+
+void loopTouch(void *parameter) {
+  while (1) {
+    vTaskDelay(50 / portTICK_PERIOD_MS); //Checks every 50 ms for touch input
   }
 }

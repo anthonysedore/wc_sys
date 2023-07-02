@@ -6,6 +6,8 @@ EspSoftwareSerial::UART myPort;
 float latitude, longitude;
 unsigned long age;
 
+unsigned long gps_date, gps_time;
+
 void setupGPS() {
   // put your setup code here, to run once:
   //Serial.begin(115200); // Standard hardware serial port
@@ -50,3 +52,6 @@ void loopGPS(void *parameter) {
   }
 }
 
+void updateTime() {
+  gps.get_datetime(&gps_date, &gps_time);
+}
