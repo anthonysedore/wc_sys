@@ -19,9 +19,7 @@ void setupLCD() {
   int w = tft.width();
 
   tft.setRotation(1);
-
   tft.fillScreen(TFT_BLACK);
-
 }
 
 void updateLCD(void *parameter) {
@@ -29,19 +27,20 @@ void updateLCD(void *parameter) {
     int xpos =  0;
     int ypos = 40;
 
-    tft.fillScreen(~TFT_NAVY); // Clear screen to navy background
-    header("Print eSPI Test");
+    tft.fillScreen(TFT_NAVY); // Clear screen to navy background
+    
+    //header("Print eSPI Test");
 
-    tft.setTextColor(~TFT_YELLOW, ~TFT_WHITE);
-    tft.setCursor(xpos, ypos);    // Set cursor near top left corner of screen
+    tft.setCursor(0, 0, 4);
+    
+    tft.setTextColor(TFT_WHITE, TFT_BLACK); tft.setTextFont(4);
+    tft.print("Latitude = ");
+    tft.println(latitude, 6);
+    tft.print("Longitude = ");
+    tft.println(longitude, 6);
 
-    tft.setTextFont(GLCD);     // Select the orginal small GLCD font by using NULL or GLCD
-    tft.println();             // Move cursor down a line
-    tft.print("Original GLCD font");    // Print the font name onto the TFT screen
-    tft.println("I really enjoy this, so easy");
-    tft.println();
+    
 
-
-    vTaskDelay(200 / portTICK_PERIOD_MS); //End Screen
+    vTaskDelay(10000 / portTICK_PERIOD_MS); //End Screen
   }
 }

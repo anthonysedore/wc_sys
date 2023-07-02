@@ -4,10 +4,10 @@
 #include "Arduino.h"
 #include <SPI.h>
 #include <TFT_eSPI.h> // Hardware-specific library
-#include "Free_Fonts.h" // Include the header file attached to this sketch
+//#include "Free_Fonts.h" // Include the header file attached to this sketch
 
 //  variables
-
+extern float latitude, longitude;
 
 //  function prototypes
 void setupLCD();
