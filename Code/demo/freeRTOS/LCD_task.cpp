@@ -36,7 +36,7 @@ void updateLCD(void *parameter) {
 
     //Display Recording Time
     tft.setCursor(0, 100, 4);
-    if (toggleDATA) {
+    if (dataActive) {
       tft.setTextColor(TFT_GREEN, TFT_BLACK); tft.setTextFont(4);
     } else {
       tft.setTextColor(TFT_RED, TFT_BLACK); tft.setTextFont(4);

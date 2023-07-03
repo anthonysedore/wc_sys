@@ -5,6 +5,7 @@
 #include "Definitions.h"
 #include "GPS_task.h"
 
+//extern static TaskHandle_t taskDATA;
 //  function prototypes
 void loopDATA(void *parameter);
 
