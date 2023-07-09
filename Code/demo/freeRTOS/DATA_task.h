@@ -4,8 +4,10 @@
 #include "Arduino.h"
 #include "Definitions.h"
 #include "GPS_task.h"
+#include <ESP32Time.h> //For keeping time in RTC
 
-//extern static TaskHandle_t taskDATA;
+extern int dateANDtime[6];
+
 //  function prototypes
 void loopDATA(void *parameter);
 

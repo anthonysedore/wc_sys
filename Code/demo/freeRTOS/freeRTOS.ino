@@ -5,18 +5,8 @@
 #include "WIRELESS_task.h" //Responsible for communicating to base station
 
 bool dataActive = false;
-int stopwatch = 0;
-static TaskHandle_t taskDATA = NULL; 
 
-void displayGPS(void *parameter) {
-  while (1) {
-    Serial.print("Latitude = ");
-    Serial.print(latitude, 6);
-    Serial.print(", Longitude = ");
-    Serial.println(longitude, 6);
-    vTaskDelay(1000 / portTICK_PERIOD_MS);
-  }
-}
+static TaskHandle_t taskDATA = NULL; 
 
 void setup() {
   Serial.begin(115200); // Debug serial port
@@ -33,8 +23,7 @@ void setup() {
   //             1);     // Run on one core for demo purposes (ESP32 only)
 
   xTaskCreatePinnedToCore(loopGPS, "Update GPS", 1024, NULL, 2, NULL, 1);
-  //xTaskCreatePinnedToCore(displayGPS, "Display GPS", 1024, NULL, 1, NULL, 1);
-  xTaskCreatePinnedToCore(loopDATA, "starts datalog", 2048, NULL, 4, &taskDATA, 1);
+  xTaskCreatePinnedToCore(loopDATA, "starts datalog", 10240, NULL, 4, &taskDATA, 1);
   xTaskCreatePinnedToCore(updateLCD, "Send screen to LCD", 4096, NULL, 1, NULL, 0); //RUNS ON SECOND CORE :)))
 }
 

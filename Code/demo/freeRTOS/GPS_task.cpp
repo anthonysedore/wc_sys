@@ -8,7 +8,6 @@ unsigned long gps_date, gps_time, age;
 
 void setupGPS() {
   // put your setup code here, to run once:
-  //Serial.begin(115200); // Standard hardware serial port
   myPort.begin(9600, SWSERIAL_8N1, MYPORT_RX, MYPORT_TX, false);
   if (!myPort) { // If the object did not initialize, then its configuration is invalid
     Serial.println("Invalid EspSoftwareSerial pin configuration, check config"); 

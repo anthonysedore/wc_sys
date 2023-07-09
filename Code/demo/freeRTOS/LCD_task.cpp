@@ -16,12 +16,12 @@ void setupLCD() {
   tft.init();
 
   tft.setRotation(1);
-  tft.fillScreen(TFT_BLACK);
+  tft.fillScreen(TFT_YELLOW);
 }
 
 void updateLCD(void *parameter) {
   while (1) {
-    tft.fillScreen(TFT_NAVY); // Clear screen to navy background
+    //tft.fillScreen(TFT_NAVY); // Clear screen to navy background
     
     //header("Print eSPI Test");
 
@@ -43,10 +43,10 @@ void updateLCD(void *parameter) {
     }
     
     tft.println("Recording Time = ");
-    tft.println(stopwatch);
+    tft.println(dataTime);
     
 
-    vTaskDelay(1000 / portTICK_PERIOD_MS); //End Screen
+    vTaskDelay(100 / portTICK_PERIOD_MS); //End Screen
   }
 }
 
