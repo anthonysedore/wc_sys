@@ -1,4 +1,4 @@
-21747939196664167
+21754694933867413
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -90817,3 +90817,31 @@ esp32dev
 0
 30
 29
+wc_sys_footprint
+medlogo
+
+
+0
+0
+0
+wc_sys_footprint
+medsmLOGO
+
+
+0
+0
+0
+wc_sys_footprint
+smallUSFIEEElogo
+
+
+0
+0
+0
+wc_sys_footprint
+usfieeelogo
+
+
+0
+0
+0
