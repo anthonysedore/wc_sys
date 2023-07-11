@@ -1,0 +1,5 @@
+set gps sample rate higher
+fix crash when gps doesn't pick up satelite and try to start recording
+improve time syncronization instead of relying on delays
+
+Add GOPRO control feature to start and stop recording automatically
