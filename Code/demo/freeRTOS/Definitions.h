@@ -5,7 +5,7 @@ extern bool dataActive;
 
 extern float latitude, longitude;
 extern unsigned long gps_date, gps_time, age;
-extern float dataTime;
+extern double dataTime;
 //Task Handle, used to suspend start tasks using others
 //extern static TaskHandle_t taskDATA; 
 

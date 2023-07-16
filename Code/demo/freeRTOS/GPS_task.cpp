@@ -45,7 +45,7 @@ void loopGPS(void *parameter) {
     if (chars == 0) {
       Serial.println("** No characters received from GPS: check wiring **");
     }
-    vTaskDelay(10000 / portTICK_PERIOD_MS);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
 }
 

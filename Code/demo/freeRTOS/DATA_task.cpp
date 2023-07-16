@@ -1,12 +1,14 @@
 #include "DATA_task.h"
 #include "SDscript.h"
+hw_timer_t * timer = NULL;
+
 
 //DATA Task should start after being called by either physical button or touchscreen
 //For future, would like to add auto start using car velocity
 
 int dateANDtime[6]; //Date and time arrray, (30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
 ESP32Time rtc(-18000);
-float dataTime = 0.0;
+double dataTime = 0.0;
 
 //decodetime horrible method to get time
 //replace with void crack_datetime(int *year, byte *month, byte *day, 
@@ -48,9 +50,12 @@ void decodeTime()
 void loopDATA(void *parameter) 
 {
   SDsetup();
+  // timer = timerBegin(0, 80, true);
+  // timerStop(timer);
   while (1) {
     if (dataActive) {
-      dataTime = 0.0;
+      timer = timerBegin(0, 80, true);
+      dataTime = timerReadSeconds(timer);
       updateTime();
       char filename[30];
       char dataEntry[40];
@@ -69,15 +74,16 @@ void loopDATA(void *parameter)
       appendFile(SD, filename, "Time,Lap,Latitude,Longitude,MPH\n");
 
       while (dataActive) {
-        sprintf(dataEntry, "%.2f,0,%.6f,%.6f,0\n", dataTime, latitude, longitude);
+        sprintf(dataEntry, "%lf,0,%.6f,%.6f,0\n", dataTime, latitude, longitude);
         appendFile(SD, filename, dataEntry);
-        dataTime = dataTime+0.1;
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+        dataTime = timerReadSeconds(timer);
+        vTaskDelay(200 / portTICK_PERIOD_MS);
         // Serial.println(rtc.getTime("%A, %B %d %Y %H:%M:%S")); 
       }
+      timerStop(timer);
     }
   //END OF LOOP, loop ending, save data below and suspend task until called again
-
+  // timerRestart(timer);
 
   vTaskSuspend(NULL); //NULL means task suspends itself
   }
