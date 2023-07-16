@@ -1,6 +1,0 @@
-.pio/**
-.vscode/**
-.travis.yml
-lib/**
-test/**
-include/**

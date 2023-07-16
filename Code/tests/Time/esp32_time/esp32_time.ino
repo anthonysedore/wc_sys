@@ -72,6 +72,6 @@ void loop() {
 
   struct tm timeinfo = rtc.getTimeStruct();
   //Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");   //  (tm struct) Sunday, January 17 2021 07:24:38
-  
+  Serial.println(rtc.getSecond());
   delay(1000);
 }
