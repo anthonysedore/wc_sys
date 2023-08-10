@@ -525,7 +525,7 @@
         (name "T_DO" (effects (font (size 1.27 1.27))))
         (number "13" (effects (font (size 1.27 1.27))))
       )
-      (pin no_connect line (at -11.43 -15.24 0) (length 2.54)
+      (pin output line (at -11.43 -15.24 0) (length 2.54)
         (name "T_IRQ" (effects (font (size 1.27 1.27))))
         (number "14" (effects (font (size 1.27 1.27))))
       )
