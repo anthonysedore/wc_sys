@@ -404,7 +404,9 @@
     "pinned_footprint_libs": [
       "wc_sys_footprint"
     ],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "wc_sys_symbol"
+    ]
   },
   "meta": {
     "filename": "finalboard.kicad_pro",
