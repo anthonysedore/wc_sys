@@ -6,7 +6,7 @@
       (effects (font (size 1 1) (thickness 0.1)))
     (tstamp b8a95731-0088-46ab-984d-d4655134bd35)
   )
-  (fp_text value "GT-U7" (at -3.75 -15.25 unlocked) (layer "F.Fab")
+  (fp_text value "GT-U7" (at -3.75 -15.25 unlocked) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.15)))
     (tstamp fcd8146c-64e8-4e41-93b4-6fb803a13032)
   )
