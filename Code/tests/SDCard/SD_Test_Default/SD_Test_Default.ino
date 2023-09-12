@@ -173,9 +173,11 @@ void testFileIO(fs::FS &fs, const char * path){
     file.close();
 }
 
+SPIClass 
+
 void setup(){
     Serial.begin(115200);
-    if(!SD.begin()){
+    if(!SD.begin(ssPin=10, [sck=12, miso=13, mosi=11, ss=10])){
         Serial.println("Card Mount Failed");
         return;
     }

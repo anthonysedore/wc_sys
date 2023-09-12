@@ -1,3 +1,6 @@
+csv file is direct output from SDcard mounted in unit.
+Video created in racerender using gopro video and csv file output.
+-------
 set gps sample rate higher
 fix crash when gps doesn't pick up satelite and try to start recording
 improve time syncronization instead of relying on delays
@@ -5,3 +8,6 @@ improve time syncronization instead of relying on delays
 investigate if SDcard should go on seperate SPI controller on esp32
 
 Add GOPRO control feature to start and stop recording automatically
+
+--------------------
+Update: gps sample rate and fixed time sync.
