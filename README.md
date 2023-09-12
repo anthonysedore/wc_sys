@@ -6,7 +6,8 @@ Wireless Communication System for Electrathon
 
 ![image](https://github.com/anthonysedore/wc_sys/assets/121986109/63cb6a0d-645c-426b-a0ef-2d4488502ee3)
 
-PCB designed in KiCad
+PCB designed in KiCad,
+
 Code for ESP32 in Arduino
 
 -read data from motor controller, battery BMS
