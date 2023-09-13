@@ -8,6 +8,9 @@
 "PI4ULS5V202UEXDICT-ND	$0.76 	2	IC TRANSLTR BIDIRECTIONAL 8MSOP	"	
 "DMG2301L-7DICT-ND	$0.33 	1	MOSFET P-CH 20V 3A SOT23	"	
 "MCP73831T-2ACI/OTCT-ND	$0.76 	1	IC BATT CNTL LI-ION 1CEL SOT23-5	"	
-"1965-ESP32-S3-WROOM-1U-N16R8CT-ND	$3.90 	1	RF TXRX MOD BLUETOOTH U.FL SMD	"	
+"1965-ESP32-S3-WROOM-1U-N16R8CT-ND	$3.90 	1	RF TXRX MOD BLUETOOTH U.FL SMD	"
+"hosyond3.5tft	$17	1	Hosyond 3.5 Inches TFT LCD Touch Screen	"
+"neo-6m	$11	1	GPS Module GPS NEO-6M	"
 
+about cost, $44 for a board
 other parts that are not listed I had lying around should as resistors and capacitors, should document
