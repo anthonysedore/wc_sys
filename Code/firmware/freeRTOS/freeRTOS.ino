@@ -33,7 +33,7 @@ void loop() {
 }
 
 void checkTouchPin() {
-  if (touchRead(13) < 35) {
+  if (digitalRead(0) == 0 ) {
     dataActive = !dataActive;
     if (dataActive) {
       vTaskResume(taskDATA);

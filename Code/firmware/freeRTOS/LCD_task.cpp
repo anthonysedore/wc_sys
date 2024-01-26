@@ -11,6 +11,21 @@ void setupLCD() {
   timer2 = timerBegin(0, 80, true);
 }
 
+//Used for fake measurements to test display
+float checkSpeed(void) {
+  float speed;
+  double time = timerReadSeconds(timer2);
+  speed = 5*cos(time*0.2)-0.5*sin(time*0.5)+20;
+  return speed; 
+}
+
+float checkBatteryVoltage(void) {
+  float voltage;
+  double time = timerReadSeconds(timer2);
+  voltage = 84-0.05*time;
+  return voltage; 
+}
+
 void updateLCD(void *parameter) {
   while (1) {
     tft.setCursor(0, 0, 4);
@@ -45,20 +60,6 @@ void updateLCD(void *parameter) {
   }
 }
 
-//Used for fake measurements to test display
-float checkSpeed(void) {
-  float speed;
-  double time = timerReadSeconds(timer2);
-  speed = 5*cos(time*0.2)-0.5*sin(time*0.5)+20;
-  return speed; 
-}
-
-float checkBatteryVoltage(void) {
-  float voltage;
-  double time = timerReadSeconds(timer2);
-  voltage = 84-0.05*time;
-  return voltage; 
-}
 
 //I don't use this
 void loopTouch(void *parameter) {
