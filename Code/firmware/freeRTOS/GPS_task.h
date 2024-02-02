@@ -3,7 +3,6 @@
 
 #include "Arduino.h"
 #include "Definitions.h"
-#include <SoftwareSerial.h>
 #include <TinyGPS.h>
 
 #define MYPORT_TX 26
