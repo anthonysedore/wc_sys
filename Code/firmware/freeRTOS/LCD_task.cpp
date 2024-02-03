@@ -60,7 +60,7 @@ void updateLCD(void *parameter) {
   }
 }
 
-
+ 
 //I don't use this
 void loopTouch(void *parameter) {
   while (1) {

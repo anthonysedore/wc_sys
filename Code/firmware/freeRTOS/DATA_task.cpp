@@ -56,7 +56,9 @@ void loopDATA(void *parameter)
     if (dataActive) {
       timer = timerBegin(0, 80, true);
       dataTime = timerReadSeconds(timer);
+      
       updateTime();
+      
       char filename[30];
       char dataEntry[40];
       //date is ddmmyy, time is hhmmss ms
