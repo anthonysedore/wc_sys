@@ -26,7 +26,7 @@ void setup() {
   //             1);     // Run on one core for demo purposes (ESP32 only)
 
   xTaskCreatePinnedToCore(loopGPS, "Update GPS", 1024, NULL, 2, NULL, 1);
-  xTaskCreatePinnedToCore(loopCA, "read from CA", 10240, NULL, 3, NULL, 1);
+  xTaskCreatePinnedToCore(loopCA, "read from CA", 1024, NULL, 3, NULL, 1);
   xTaskCreatePinnedToCore(loopDATA, "starts datalog", 10240, NULL, 4, &taskDATA, 1);
   xTaskCreatePinnedToCore(updateLCD, "Send screen to LCD", 4096, NULL, 1, NULL, 0); //RUNS ON SECOND CORE :)))
 }
