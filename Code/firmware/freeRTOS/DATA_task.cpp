@@ -6,6 +6,8 @@ hw_timer_t * timer = NULL;
 //DATA Task should start after being called by either physical button or touchscreen
 //For future, would like to add auto start using car velocity
 
+bool setTime = false;
+
 int dateANDtime[6]; //Date and time arrray, (30, 24, 15, 17, 1, 2021);  // 17th Jan 2021 15:24:30
 ESP32Time rtc(-18000);
 double dataTime = 0.0;
@@ -57,18 +59,19 @@ void loopDATA(void *parameter)
       timer = timerBegin(0, 80, true);
       dataTime = timerReadSeconds(timer);
       
-      updateTime();
-      
       char filename[30];
       char dataEntry[40];
       //date is ddmmyy, time is hhmmss ms
-      decodeTime();
-      sprintf(filename, "/%lu.%lu.csv", gps_date, gps_time-4000000); //-4000000 to adjust time to Eastern Time
-      //rtc.setTime(30, 24, 15, gps_date, 1, 2021);
+      if (setTime) {
+        updateTime();
+        decodeTime();
+        sprintf(filename, "/%lu.%lu.csv", gps_date, gps_time-4000000); //-4000000 to adjust time to Eastern Time
+        rtc.setTime(dateANDtime[2], dateANDtime[1], dateANDtime[0], dateANDtime[3], dateANDtime[4], dateANDtime[5]);
+      }
+      else {
+        sprintf(filename, "/%d.csv", random(100, 200));
+      }
       Serial.println(filename);
-
-
-      rtc.setTime(dateANDtime[2], dateANDtime[1], dateANDtime[0], dateANDtime[3], dateANDtime[4], dateANDtime[5]);
 
       listDir(SD, "/", 0);
 
