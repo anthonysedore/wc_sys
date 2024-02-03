@@ -57,6 +57,7 @@ void loopDATA(void *parameter)
       
       char filename[30];
       char dataEntry[40];
+
       //date is ddmmyy, time is hhmmss ms
       if (setTime) {
         updateTime();
@@ -65,17 +66,19 @@ void loopDATA(void *parameter)
         rtc.setTime(dateANDtime[2], dateANDtime[1], dateANDtime[0], dateANDtime[3], dateANDtime[4], dateANDtime[5]);
       }
       else {
-        sprintf(filename, "/%d.csv", random(100, 200));
+        sprintf(filename, "/%d.csv", random(100, 2000)); //Placeholder, file is random name between these two numbers
       }
       Serial.println(filename);
 
       listDir(SD, "/", 0);
 
       writeFile(SD, filename, "# RaceRender Data\n");
-      appendFile(SD, filename, "Time,Lap,Latitude,Longitude,MPH\n");
+      // appendFile(SD, filename, "Time,Lap,Latitude,Longitude,MPH\n"); //Only GPS
+      appendFile(SD, filename, "Time,Lap,Latitude,Longitude,Capacity,Voltage,Amps,Speed,CA_FLGS\n"); //GPS + CA Logs
 
       while (dataActive) {
-        sprintf(dataEntry, "%lf,0,%.6f,%.6f,0\n", dataTime, latitude, longitude);
+        // sprintf(dataEntry, "%lf,0,%.6f,%.6f,0\n", dataTime, latitude, longitude); //Only GPS
+        sprintf(dataEntry, "%lf,0,%.6f,%.6f,%s,%s,%s,%s,%s\n", dataTime, latitude, longitude, CA_data[CA_AH], CA_data[CA_V], CA_data[CA_A], CA_data[CA_S], CA_data[CA_FLGS]); //GPS + CA Logs
         appendFile(SD, filename, dataEntry);
         dataTime = timerReadSeconds(timer);
         vTaskDelay(200 / portTICK_PERIOD_MS);
