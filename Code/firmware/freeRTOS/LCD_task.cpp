@@ -11,21 +11,6 @@ void setupLCD() {
   timer2 = timerBegin(0, 80, true);
 }
 
-//Used for fake measurements to test display
-float checkSpeed(void) {
-  float speed;
-  double time = timerReadSeconds(timer2);
-  speed = 5*cos(time*0.2)-0.5*sin(time*0.5)+20;
-  return speed; 
-}
-
-float checkBatteryVoltage(void) {
-  float voltage;
-  double time = timerReadSeconds(timer2);
-  voltage = 84-0.05*time;
-  return voltage; 
-}
-
 void updateLCD(void *parameter) {
   while (1) {
     tft.setCursor(0, 0, 4);
@@ -38,13 +23,19 @@ void updateLCD(void *parameter) {
     tft.println(longitude, 6);
 
     tft.print("MPH (speed) = ");
-    tft.println(checkSpeed(), 2); //Display 2 decimals for float
+    tft.println(CA_data[CA_S]);
 
     tft.print("Battery Voltage = ");
-    tft.println(checkBatteryVoltage(), 2); //Display 2 decimals for float
+    tft.println(CA_data[CA_V]);
+
+    tft.print("Capacity Remaining = ");
+    tft.println(CA_data[CA_AH]);
+
+    tft.print("Current = ");
+    tft.println(CA_data[CA_A]);
     
     //Display Recording Time, changes text color for when recording starts and stops
-    tft.setCursor(0, 100, 4);
+    tft.setCursor(0, 200, 4);
     if (dataActive) {
       tft.setTextColor(TFT_GREEN, TFT_BLACK); tft.setTextFont(4);
     } else {

@@ -4,6 +4,8 @@
 #include "DATA_task.h" //Responsible keep track of data and logging to SD Card
 #include "WIRELESS_task.h" //Responsible for communicating to base station
 
+#include "CycleAnalyst_task.h" //Responsible for listening to Cycle Analyst
+
 bool dataActive = false;
 
 static TaskHandle_t taskDATA = NULL; 
@@ -12,6 +14,7 @@ void setup() {
   Serial.begin(115200); // Debug serial port
   setupGPS();
   setupLCD();
+  setupCA();
 
   // xTaskCreatePinnedToCore(  // Use xTaskCreate() in vanilla FreeRTOS
   //             loopGPS,  // Function to be called
@@ -23,6 +26,7 @@ void setup() {
   //             1);     // Run on one core for demo purposes (ESP32 only)
 
   xTaskCreatePinnedToCore(loopGPS, "Update GPS", 1024, NULL, 2, NULL, 1);
+  xTaskCreatePinnedToCore(loopCA, "read from CA", 10240, NULL, 3, NULL, 1);
   xTaskCreatePinnedToCore(loopDATA, "starts datalog", 10240, NULL, 4, &taskDATA, 1);
   xTaskCreatePinnedToCore(updateLCD, "Send screen to LCD", 4096, NULL, 1, NULL, 0); //RUNS ON SECOND CORE :)))
 }

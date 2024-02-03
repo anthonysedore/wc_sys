@@ -2,7 +2,6 @@
 #include "SDscript.h"
 hw_timer_t * timer = NULL;
 
-
 //DATA Task should start after being called by either physical button or touchscreen
 //For future, would like to add auto start using car velocity
 
@@ -23,15 +22,12 @@ void decodeTime()
     //assig number as string in char pointer
     sprintf((char*)temp,"%lu", gps_date);
 
-    
-
     //Shifts string 1 to the right, to fix format
     if (strlen(temp)==5) {
       for(int i=6; i>0; i--)
         temp[i] = temp[i-1];
       temp[0] = '0';
     }
-
     dateANDtime[3] = (temp[0] - 48) * 10 + (temp[1] - 48); //Day of Month
     dateANDtime[4] = (temp[2] - 48) * 10 + (temp[3] - 48); //Month
     dateANDtime[5] = (temp[4] - 48) * 10 + (temp[5] - 48) + 2000; //Year

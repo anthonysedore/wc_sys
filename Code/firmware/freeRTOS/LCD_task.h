@@ -5,6 +5,7 @@
 #include "Definitions.h"
 #include <SPI.h>
 #include <TFT_eSPI.h> // Hardware-specific library
+#include "CycleAnalyst_task.h"
 //#include "Free_Fonts.h" // Include the header file attached to this sketch
 
 
