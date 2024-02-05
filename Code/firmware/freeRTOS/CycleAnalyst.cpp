@@ -1,10 +1,11 @@
 #include "CycleAnalyst_task.h"
 
-char CA_data[14][8] = {"0", "0", "0", "0", "0", "0", "0", "0"};
+char CA_data[14][8] = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
+char CA_txt_outputbuffer[14][8];
 bool newData =  false;
 
 void encodeCA(Stream &CAserial) {
-  char CA_txt_outputbuffer[14][8] = {"0", "0", "0", "0", "0", "0", "0", "0"};
+  char CA_txt_outputbuffer[14][8] = {"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
   char letter; //Stores serial reading into char array
   bool new_letter = false; //Flag for new letter coming in
   int word_num = 0; //tracks which word it is on
@@ -16,6 +17,10 @@ void encodeCA(Stream &CAserial) {
       // Serial.print(" ");
       // Serial.print(letter);
       new_letter = true;
+    }
+    else {
+      vTaskDelay(50 / portTICK_PERIOD_MS); //check every 50 ms
+      //Serial.println("NOTHING READ");
     }
     if (new_letter) {
       if (letter == '\n') {
@@ -41,9 +46,6 @@ void encodeCA(Stream &CAserial) {
       }
       new_letter = false;
     }
-    else {
-      vTaskDelay(50 / portTICK_PERIOD_MS); //check every 50 ms
-    }
   }
 }
 
@@ -59,15 +61,14 @@ void printCA() {
 }
 
 void setupCA() {
-  Serial2.begin(9600, SERIAL_8N1, 14, 13); // 14, 13 For using with USB Cable
-  // Serial2.begin(9600, SERIAL_8N1, 13, 14); // 13, 14 For using with Cycle Analyst
+  // Serial2.begin(9600, SERIAL_8N1, 14, 13); // 14, 13 For using with USB Cable
+  Serial2.begin(9600, SERIAL_8N1, 13, 14); // 13, 14 For using with Cycle Analyst
 }
 
 void loopCA(void *parameter) {
   while (1) {
     encodeCA(Serial2);
-    printCA();
-    vTaskDelay(100 / portTICK_PERIOD_MS); //Check every 100 ms
+    //printCA();
+    vTaskDelay(500 / portTICK_PERIOD_MS); //Check every 100 ms
   }
-  
 }

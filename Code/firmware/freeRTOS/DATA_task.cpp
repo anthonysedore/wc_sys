@@ -56,7 +56,7 @@ void loopDATA(void *parameter)
       dataTime = timerReadSeconds(timer);
       
       char filename[30];
-      char dataEntry[40];
+      char dataEntry[120];
 
       //date is ddmmyy, time is hhmmss ms
       if (setTime) {
@@ -78,9 +78,17 @@ void loopDATA(void *parameter)
 
       while (dataActive) {
         // sprintf(dataEntry, "%lf,0,%.6f,%.6f,0\n", dataTime, latitude, longitude); //Only GPS
+        //vTaskSuspendAll();
         sprintf(dataEntry, "%lf,0,%.6f,%.6f,%s,%s,%s,%s,%s\n", dataTime, latitude, longitude, CA_data[CA_AH], CA_data[CA_V], CA_data[CA_A], CA_data[CA_S], CA_data[CA_FLGS]); //GPS + CA Logs
+        Serial.println(dataEntry);
+        // Serial.println(CA_data[CA_A]);
+        // Serial.println(CA_data[CA_S]);
+        // Serial.println(CA_data[CA_FLGS]);
         appendFile(SD, filename, dataEntry);
+        //Serial.println(timerReadSeconds(timer));
         dataTime = timerReadSeconds(timer);
+        //Serial.println(random(1, 50));
+        //xTaskResumeAll();
         vTaskDelay(200 / portTICK_PERIOD_MS);
         // Serial.println(rtc.getTime("%A, %B %d %Y %H:%M:%S")); 
       }
