@@ -7,7 +7,7 @@ unsigned long gps_date, gps_time, age;
 
 void setupGPS() {
   // put your setup code here, to run once:
-  Serial1.begin(9600, SERIAL_8N1, MYPORT_RX, MYPORT_TX, false);
+  Serial1.begin(9600, SERIAL_8N1, MYPORT_RX, MYPORT_TX);
 }
 
 void loopGPS(void *parameter) {
